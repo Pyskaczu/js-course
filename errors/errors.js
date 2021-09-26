@@ -10,7 +10,7 @@ function promptValue() {
         msg = "You provided: " + ans;
 
     } catch (errMsg) {
-        msg = errMsg;
+        msg = errMsg.message;
     }
 
     document.getElementById("msg").innerText = msg;

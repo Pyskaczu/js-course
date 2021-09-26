@@ -1,7 +1,7 @@
 window.onload = initAll;
 
 function initAll() {
-    let ids = ["WarsawId", "KrakowId", "BreslauId"];
+    let ids = ["WarsawId", "CracowId", "WroclawId"];
     ids.forEach(getElementByIdAndSetOnclick);
 }
 
