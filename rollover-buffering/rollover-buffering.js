@@ -18,6 +18,14 @@ function setupRollover(image) {
         // OR evt.target.src = evt.target.outImage.src;
     });
 
+
+    image.clickImage = new Image();
+    image.clickImage.src = "images/" + image.id + "_click.png";
+    image.addEventListener("click", evt => {
+        // or image.src = image.clickImage.src;
+        evt.target.src = evt.target.clickImage.src;
+    });
+
     image.overImage = new Image();
     image.overImage.src = "images/" + image.id + "_on.png";
     image.addEventListener("mouseover", evt => {
