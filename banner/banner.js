@@ -4,18 +4,13 @@ let thisAd = 0;
 const imageBase = "images/reading";
 
 function initBanner() {
-   document.getElementById("adBanner").parentNode.addEventListener("click", evt => {goToLink();});
+   document.getElementById("adBanner").parentNode.addEventListener("click", evt => {evt.returnValue = goToLink();});
    rotate();
 }
 
 function goToLink() {
    let links = ["google.com", "helion.pl", "gmail.com"];
    document.location.href = "http://www." + links[thisAd];
-
-   //workaround for non working return false
-   let count = 1000000000;
-   while(--count){
-   }
 
    return false;
 }
