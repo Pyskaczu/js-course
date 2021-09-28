@@ -4,15 +4,15 @@ let thisAd = 0;
 const imageBase = "images/reading";
 
 function initBanner() {
-   document.getElementById("adBanner").parentNode.addEventListener("click", evt => {evt.returnValue = goToLink();});
+   document.getElementById("adBanner").parentNode.addEventListener("click", evt => {
+      evt.preventDefault();
+      goToLink();});
    rotate();
 }
 
 function goToLink() {
    let links = ["google.com", "helion.pl", "gmail.com"];
    document.location.href = "http://www." + links[thisAd];
-
-   return false;
 }
 
 function rotate() {

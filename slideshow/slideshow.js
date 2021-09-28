@@ -9,10 +9,12 @@ function initSlideshow() {
     thisRobot = Math.floor(Math.random() * 3);
     setRobotImage();
     document.getElementById("previous").addEventListener("click", evt => {
-        evt.returnValue = previousSlide();
+        evt.preventDefault();
+        previousSlide();
     });
     document.getElementById("next").addEventListener("click", evt => {
-        evt.returnValue = nextSlide();
+        evt.preventDefault();
+        nextSlide();
     });
    setTimeout(nextSlide, 2 * 1000);
 }
@@ -23,8 +25,6 @@ function nextSlide() {
     setRobotImage();
 
     setTimeout(nextSlide, 2 * 1000);
-
-    return false;
 }
 
 function previousSlide() {
@@ -33,8 +33,6 @@ function previousSlide() {
     setRobotImage();
 
     setTimeout(previousSlide, 2 * 1000);
-
-    return false;
 }
 
 function setRobotImage() {

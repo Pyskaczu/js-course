@@ -4,13 +4,16 @@ window.addEventListener("load", evt => {
 
 const colPlace = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4];
 const usedNums = new Array(76);
+let addListeners = true;
 
 function initAll() {
     if (document.getElementById("square0")) {
         document.getElementById("reload").addEventListener("click", evt => {
-            anotherCard()
+            evt.preventDefault();
+            anotherCard();
         });
         newCard();
+        addListeners = false;
     } else {
         alert("Przeglądarka nie jest w stanie obłużyć tego skryptu")
     }
@@ -21,8 +24,6 @@ function anotherCard() {
         usedNums[i] = false;
     }
     newCard();
-    //do not load href link
-    return false;
 }
 
 function newCard() {
@@ -36,10 +37,11 @@ function setSquare(squareNumber) {
 
     let square = document.getElementById("square" + squareNumber);
     square.className = "";
-    square.addEventListener("mousedown", evt => {
-        toggleColour(evt)
-    });
-
+    if (addListeners) {
+        square.addEventListener("mousedown", evt => {
+            toggleColour(evt)
+        });
+    }
     while (true) {
         let newNum = colBasis + getRandom() + 1;
         if (!usedNums[newNum]) {
@@ -70,22 +72,22 @@ function checkWin() {
     let setSquares = 0;
     let winners = [31, 992, 15360, 507904, 541729, 557328, 1083458, 2162820, 4329736, 8519745, 8659472, 16252928];
 
-    for(let i = 0; i < 24; i++) {
+    for (let i = 0; i < 24; i++) {
         let currentSquare = document.getElementById("square" + i);
-        if(currentSquare.className !== "") {
+        if (currentSquare.className !== "") {
             setSquares = setSquares | Math.pow(2, i);
         }
     }
 
-    for(let i = 0; i < winners.length; i++) {
-        if((winners[i] & setSquares) === winners[i]) {
+    for (let i = 0; i < winners.length; i++) {
+        if ((winners[i] & setSquares) === winners[i]) {
             winningOption = i;
         }
     }
 
-    if(winningOption > -1) {
-        for(let i = 0; i < 24; i++) {
-            if(winners[winningOption] & Math.pow(2, i)) {
+    if (winningOption > -1) {
+        for (let i = 0; i < 24; i++) {
+            if (winners[winningOption] & Math.pow(2, i)) {
                 document.getElementById("square" + i).className = "winningBG";
             }
         }
