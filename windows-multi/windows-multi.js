@@ -11,5 +11,5 @@ function initWinLinks() {
 }
 
 function openNewWindow(linkObj, id) {
-    let catWin = window.open(linkObj.href, "catWin" + id, "location=true,toolbar=true,resizable=no");
+   window.open(linkObj.href, "catWin" + id, "location=true,toolbar=true,resizable=no");
 }
