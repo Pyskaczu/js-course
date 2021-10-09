@@ -38,10 +38,10 @@ function validTag(aTag) {
         outClass += validBasedOnClass(allClasses[i]) + " ";
     }
 
-    alert(outClass);
     tag.className = outClass;
 
     if (outClass.indexOf("invalid") > -1) {
+        invalidLabel(tag.parentNode);
         tag.focus();
         if (tag.nodeName === "INPUT") {
             tag.select();
@@ -50,6 +50,12 @@ function validTag(aTag) {
     }
 
     return true;
+}
+
+function invalidLabel(parentNode) {
+    if(parentNode.nodeName === "LABEL") {
+        parentNode.className += " invalid";
+    }
 }
 
 function validBasedOnClass(clazz) {
@@ -63,6 +69,19 @@ function validBasedOnClass(clazz) {
             }
             return clazz;
         default:
+            if (allGood && !crossCheck(clazz)) {
+                return "invalid "
+            }
             return clazz;
     }
+}
+
+
+
+function crossCheck(clazz) {
+    if(!document.getElementById(clazz)) {
+        return false;
+    }
+
+    return tag.value === document.getElementById(clazz).value;
 }
